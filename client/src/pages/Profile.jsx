@@ -1,62 +1,75 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import SkillsList from '../components/SkillsList';
-import SkillForm from '../components/SkillForm';
-
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
 
 const Profile = () => {
-  const { profileId } = useParams();
+  const [user, setUser] = useState({
+    name: '',
+    email: ''
+  });
+  const navigate = useNavigate();
 
-  // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information
-  const { loading, data } = useQuery(
-    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
-    {
-      variables: { profileId: profileId },
-    }
-  );
 
-  // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
-  const profile = data?.me || data?.profile || {};
+  useEffect(() => {
+ 
+    const fetchUserData = async () => {
+   
+      setUser({
+        name: 'John Doe',
+        email: 'john.doe@example.com'
+      });
+    };
+    fetchUserData();
+  }, []);
 
-  // Use React Router's `<Navigate />` component to redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to="/me" />;
-  }
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setUser(prevState => ({
+      ...prevState,
+      [id]: value
+    }));
+  };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!profile?.name) {
-    return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
-    );
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+ 
+    console.log('Updated User Data:', user);
+  
+    navigate('/home');
+  };
 
   return (
-    <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
-      </h2>
-
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
-        />
-      )}
-
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
-      </div>
+    <div className="profile-container">
+      <h1>Profile</h1>
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input
+            className="form-input"
+            type="text"
+            id="name"
+            value={user.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            className="form-input"
+            type="email"
+            id="email"
+            value={user.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <button className="btn btn-primary" type="submit">
+            Save Changes
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
