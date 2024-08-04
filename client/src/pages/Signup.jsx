@@ -1,101 +1,85 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../utils/mutations';
-
-import Auth from '../utils/auth';
 
 const Signup = () => {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-  const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+   
+    console.log('Name:', name);
+    console.log('Password:', password);
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
 
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-
-    try {
-      const { data } = await addProfile({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.addProfile.token);
-    } catch (e) {
-      console.error(e);
-    }
+    navigate('/home'); 
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="name"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+    <div className="row">
+      <div className="col-md-6">
+        <h2>Signup</h2>
+        <form className="form signup-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name-signup">Name:</label>
+            <input
+              className="form-input"
+              type="text"
+              id="name-signup"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
           </div>
-        </div>
+          <div className="form-group">
+            <label htmlFor="password-signup">Password:</label>
+            <input
+              className="form-input"
+              type="password"
+              id="password-signup"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
+              Signup
+            </button>
+          </div>
+        </form>
       </div>
-    </main>
+      <div className="col-md-6">
+        <h2>Login</h2>
+        <form className="form login-form">
+          <div className="form-group">
+            <label htmlFor="name-login">Name:</label>
+            <input
+              className="form-input"
+              type="text"
+              id="name-login"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password-login">Password:</label>
+            <input
+              className="form-input"
+              type="password"
+              id="password-login"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

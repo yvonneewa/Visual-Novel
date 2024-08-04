@@ -1,28 +1,30 @@
-import { useQuery } from '@apollo/client';
-
-import ProfileList from '../components/ProfileList';
-
-import { QUERY_PROFILES } from '../utils/queries';
+import React from "react";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data?.profiles || [];
+  const handleStartClick = (e) => {
+    e.preventDefault();
+    window.location.href = "/game";
+  };
 
   return (
-    <main>
-      <div className="flex-row justify-center">
-        <div className="col-12 col-md-10 my-3">
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of friends..."
-            />
-          )}
+    <div className="row mb-4">
+      <div className="col-md-10">
+        <div className="title-container"></div>
+        <div className="fade-in-title">
+          <h1 className="creepster">Dead End</h1>
+        </div>
+        <div align="center">
+          <a
+            href="/"
+            id="start-link"
+            className="play-button"
+            onClick={handleStartClick}
+          >
+            Start
+          </a>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
