@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-const Profile = require('./Profile');
 
-module.exports = { Profile };
-=======
+
 const User = require('./User');
-const Thought = require('./Thought');
+const Story = require('./Story');
 
-module.exports = { User, Thought };
->>>>>>> origin/main
+module.exports = { User, Story };

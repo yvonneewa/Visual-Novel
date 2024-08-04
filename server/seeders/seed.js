@@ -1,27 +1,12 @@
 const db = require('../config/connection');
-<<<<<<< HEAD
-const { Profile } = require('../models');
-const profileSeeds = require('./profileSeeds.json');
-=======
 const { User, Thought } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const thoughtSeeds = require('./thoughtSeeds.json');
->>>>>>> origin/main
+// const thoughtSeeds = require('./thoughtSeeds.json');
+const storySeeds = require('./userData.json');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
   try {
-<<<<<<< HEAD
-    await cleanDB('Profile', 'profiles');
-    
-    await Profile.create(profileSeeds);
-
-    console.log('all done!');
-    process.exit(0);
-  } catch (err) {
-    throw err;
-  }
-=======
     await cleanDB('Thought', 'thoughts');
 
     await cleanDB('User', 'users');
@@ -46,5 +31,4 @@ db.once('open', async () => {
 
   console.log('all done!');
   process.exit(0);
->>>>>>> origin/main
 });
