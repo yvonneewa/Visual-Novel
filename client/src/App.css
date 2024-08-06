@@ -1,23 +1,76 @@
 /* General body styling */
-body {
+
+/* Game Page Background */
+.game-page {
+  background-image: url('/images/background1.jpg'); /* Ensure the file path is correct */
+  background-size: cover; /* Ensure the background covers the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+  background-position: center; /* Center the background image */
+  min-height: 100vh; /* Ensure the background covers the entire viewport height */
+  width: 100%; /* Ensure the background covers the entire width of the container */
+  overflow: hidden; /* Hide any overflow, if necessary */
+}
+
+.home-page{
   background-image: url('/images/HD-wallpaper-darkness-in-the-forest-creepy-forest-nature-dark.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: cover; /* Ensure the background covers the entire container */
+  background-repeat: no-repeat; /* Prevent repeating the background image */
+  background-position: center; /* Center the background image */
+  min-height: 100vh; /* Ensure the background covers the entire viewport height */
+  width: 100%; /* Ensure the background covers the entire width of the container */
+  overflow: hidden; /* Hide any overflow, if necessary */
+}
+
+
+/* Ensure correct path and file extension */
+.login-signup-page {
+  background-image: url('/images/background4.jpg'); /* Adjust path and extension as needed */
+  background-size: cover; /* Cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating */
+  background-position: center; /* Center the image */
+  min-height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
+  overflow: hidden; /* Hide overflow if needed */
+  justify-content: center;
+
+}
+
+/* Additional CSS for auth container */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7); /* Optional: Semi-transparent background for better readability */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px; /* Optional: Limit the width */
+}
+
+
+
+body {
   color: #ffffff;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50x
 }
 
 /* Header styling */
 header {
-  width: 100%;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  border-bottom: 5px solid #666666;
-  background: #1a1a1a;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%; /* Ensures the header spans the full width of the viewport */
+  padding: 10px 20px; /* Adds space inside the header */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  border-bottom: 5px solid #666666; /* Adds a border at the bottom of the header */
+  background: #1a1a1a; /* Sets the background color of the header */
+  display: flex; /* Uses Flexbox for layout */
+  justify-content: space-between; /* Distributes space between child elements */
+  align-items: center; /* Vertically centers child elements */
+  position: relative; /* Allows for positioning of child elements if needed */
+  min-height: 60px; /* Optional: Ensures the header has a minimum height */
 }
+
 
 /* Button styles */
 .no-button, .start-button, .play-button {
@@ -36,16 +89,16 @@ header {
   text-decoration: underline;
 }
 
-.start-button {
+.play-button {
   padding: 10px 20px;
   color: #ff6666;
-  font-size: 24px;
+  font-size: 40px;
   font-family: 'Creepy-Regular', sans-serif;
   text-align: center;
   display: block;
   margin: auto;
   margin-top: 50px;
-  transition: background-color 0.3s ease;
+  
 }
 
 .start-button:hover {
@@ -58,10 +111,6 @@ header {
   height: auto;
 }
 
-.play-button:hover {
-  background-color: #555555;
-  color: #ffffff;
-}
 
 /* Font face declarations */
 @font-face {
@@ -118,14 +167,12 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .nav-links {
-  display: flex;
+  display:flex;
   gap: 20px; 
-}
-
-.nav-link {
   text-decoration: none;
   color: #ffffff; 
   font-size: 16px; 
@@ -212,19 +259,11 @@ input {
   background: url('/images/title-background.jpg'); 
   background-repeat: no-repeat;
   padding: 50px; 
-  text-align: center;
+  text-align: center; /* Center-aligns the text inside this container */
+  margin-top: 20px; /* Optional: Adds some spacing above the title */
 }
 
 
-/* Auth container styling */
-.auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Ensure the container takes full height */
-  padding: 20px;
-  box-sizing: border-box;
-}
 
 /* Container for forms side by side */
 .forms-container {
@@ -275,3 +314,12 @@ input {
 .form login-form, .form signup-form{
   display: block;
   } 
+  
+  .creepster {
+    font-family: 'Creepster', cursive; /* Ensure the font is applied */
+    font-size: 10rem; /* Adjust the size as needed */
+    color: #fff; /* Adjust the color as needed */
+    text-align: center; /* Center-aligns the text inside this container */
+
+  }
+

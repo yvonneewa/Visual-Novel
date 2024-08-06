@@ -3,6 +3,7 @@ import StorySection from "../components/StorySection.jsx";
 function Game() {
   return (
     <>
+      <div className="game-page">                
         <div className="story-container">
         <div className="choice-buttons-container">
       {/* <h1>This is the game page!</h1> */}
@@ -26,6 +27,7 @@ function Game() {
       />
         </div>
         </div>
+        </div>  
     </>
   );
 }

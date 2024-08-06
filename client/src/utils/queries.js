@@ -1,31 +1,33 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_PROFILES = gql`
-  query allProfiles {
-    profiles {
-      _id
+// Define your queries
+export const GET_USER_PROFILE = gql`
+  query GetUserProfile($id: ID!) {
+    user(id: $id) {
+      id
+      email
       name
-      skills
+      bio
     }
   }
 `;
 
-export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
-      _id
+export const GET_ALL_USERS = gql`
+  query GetAllUsers {
+    users (id: $id) {
+      id
+      email
       name
-      skills
     }
   }
 `;
 
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      name
-      skills
+export const GET_STORY_SECTION = gql`
+  query GetStorySection($sectionId: ID!) {
+    storySection(id: $sectionId) {
+      id
+      title
+      content
     }
   }
 `;

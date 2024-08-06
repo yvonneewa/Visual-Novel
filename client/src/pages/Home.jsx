@@ -7,6 +7,7 @@ const Home = () => {
   };
 
   return (
+    <div className="home-page">
     <div className="row mb-4">
       <div className="col-md-10">
         <div className="title-container"></div>
@@ -24,6 +25,7 @@ const Home = () => {
           </a>
         </div>
       </div>
+    </div>
     </div>
   );
 };

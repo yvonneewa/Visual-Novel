@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import '../App.css'; // Ensure this path is correct
+import '../App.css'; 
 
 const Auth = () => {
   const [loginName, setLoginName] = useState("");
@@ -22,6 +22,7 @@ const Auth = () => {
   };
 
   return (
+    <div className="login-signup-page">
     <div className="auth-container">
       {/* Login Form */}
       <div className="form login-form">
@@ -101,6 +102,7 @@ const Auth = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

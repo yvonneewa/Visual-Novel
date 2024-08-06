@@ -18,6 +18,7 @@ const Signup = () => {
   };
 
   return (
+    <div className="login-signup-page">
     <div className="row">
       <div className="col-md-6">
         <h2>Signup</h2>
@@ -79,6 +80,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
